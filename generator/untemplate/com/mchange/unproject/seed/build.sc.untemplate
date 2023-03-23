@@ -42,7 +42,8 @@ object $module;format="camel"$ extends UntemplateModule {
     // to customize, examine key and modify the customer
     // with out = out.copy=...
     //
-    // e.g. out = out.copy(extraImports=Seq("$module;format="camel"$.*"))
+    // e.g. out = out.copy(extraImports=Seq("$package;format="camel"$.*"))
+
     out
   }
 <()

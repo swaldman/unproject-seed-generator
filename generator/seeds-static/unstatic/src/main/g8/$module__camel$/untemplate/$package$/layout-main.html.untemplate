@@ -1,0 +1,23 @@
+import $package$.$module;format="Camel"$Site
+
+val site   = input.renderLocation.site
+val cssLoc = site.location("css/style.css")
+
+val title = input.mbTitle.getOrElse("$module")
+
+// not currently used, but it's a good thing to have
+// around to relativize links
+
+given PageBase = unstatic.PageBase.fromPage(input.renderLocation)
+
+(input : $module;format="Camel"$Site.MainLayoutInput)[]~()>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="<( cssLoc.relative )>" />
+    <title><( title )></title>
+  </head>
+  <body>
+    <( input.mainContentHtml )>
+  </body>  
+</html>
