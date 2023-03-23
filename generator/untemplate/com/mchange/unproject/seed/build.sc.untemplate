@@ -1,3 +1,4 @@
+import com.mchange.codegenutil.*
 
 (input : BuildScInput)[]~()>
 
@@ -5,9 +6,9 @@ import mill._
 import mill.scalalib._
 
 // huge thanks to @lolgab onn the Scala discord!
-import $file.buildCompilationSettings
+import \$file.buildCompilationSettings
 
-import $ivy.`com.mchange::untemplate-mill:0.0.4`
+import \$ivy.`com.mchange::untemplate-mill:$untemplate_version$`
 import untemplate.mill._
 
 <()
@@ -17,51 +18,48 @@ import untemplate.mill._
   if input.extraPrologue.nonEmpty then
     writer.writeln(input.extraPrologue.trim)
     writer.writeln()
-  if input.depenencies.nonEmpty then
+  if input.dependencies.nonEmpty then
     writer.writeln("object Dependency {");
     input.dependencies.foreach { case (name, dep) =>
       writer.writeln("  val ${name} = ${dep}")
     }
     writer.writeln("}")
     writer.writeln()
+  end if
 ()>
-object drafts extends UntemplateModule {
+object $module;format="camel"$ extends UntemplateModule {
   override def scalaVersion = "3.2.1"
 
   // supports Scala 3.2.1
   override def ammoniteVersion = "2.5.6"
 
   // we'll build an index!
-  override def untemplateIndexNameFullyQualified : Option[String] = Some("com.interfluidity.drafts.IndexedUntemplates")
+  override def untemplateIndexNameFullyQualified : Option[String] = Some("$package;format="package"$.IndexedUntemplates")
 
   override def untemplateSelectCustomizer: untemplate.Customizer.Selector = { key =>
     var out = untemplate.Customizer.empty
 
-    if (key.inferredPackage.indexOf("mainblog")>=0 && key.inferredFunctionName.startsWith("entry_")) {
-      out = out.copy(extraImports=Seq("unstatic.*","com.interfluidity.drafts.DraftsSite.MainBlog"))
-    }
-
     // to customize, examine key and modify the customer
     // with out = out.copy=...
     //
-    // e.g. out = out.copy(extraImports=Seq("draft.*"))
-
+    // e.g. out = out.copy(extraImports=Seq("$module;format="camel"$.*"))
     out
   }
 <()
 if input.dependencies.nonEmpty then {
 ()>
+
   override def ivyDeps = T {
     super.ivyDeps() ++
       Agg (
 <()
-  dependencies.foreach { case (k,_) =>
-<()
-        Dependency.<( k )>,
+  input.dependencies.foreach { case (k,_) =>
 ()>
+        Dependency.<( k )>,
+<()
   }
 ()>
-      )
+      ) // Agg
   }
 <()
 }

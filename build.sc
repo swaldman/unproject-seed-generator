@@ -11,6 +11,11 @@ import $file.buildCompilationSettings
 import $ivy.`com.mchange::untemplate-mill:0.0.4`
 import untemplate.mill._
 
+object Dependency {
+  val CodegenUtil = ivy"com.mchange::codegenutil:0.0.2"
+  val OsLib       = ivy"com.lihaoyi::os-lib:0.9.1"
+}
+
 object generator extends UntemplateModule {
   override def scalaVersion = "3.2.1"
 
@@ -29,6 +34,14 @@ object generator extends UntemplateModule {
     // e.g. out = out.copy(extraImports=Seq("generator.*"))
 
     out
+  }
+
+  override def ivyDeps = T {
+    super.ivyDeps() ++
+      Agg (
+        Dependency.CodegenUtil,
+        Dependency.OsLib,
+      )
   }
 }
 
