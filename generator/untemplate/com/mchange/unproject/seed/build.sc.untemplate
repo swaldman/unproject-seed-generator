@@ -21,7 +21,7 @@ import untemplate.mill._
   if input.dependencies.nonEmpty then
     writer.writeln("object Dependency {");
     input.dependencies.foreach { case (name, dep) =>
-      writer.writeln("  val ${name} = ${dep}")
+      writer.writeln(s"  val ${name} = ${dep}")
     }
     writer.writeln("}")
     writer.writeln()
