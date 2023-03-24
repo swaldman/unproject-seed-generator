@@ -15,6 +15,12 @@ val UnstaticBuidScDependencies   = immutable.SortedMap (
 val UnstaticBuildScInput = BuildScInput( UnstaticBuildScExtraPrologue, UnstaticBuidScDependencies )
 val UnstaticBuildScText  = build_sc( UnstaticBuildScInput ).text
 
+val UntemplateReadmeMdText = README_md( "untemplate" ).text
+val UnstaticReadmeMdText   = README_md( "unstatic" ).text
+
+val UntemplateDefaultPropertiesText = default_properties( "untemplateplay" ).text
+val UnstaticDefaultPropertiesText = default_properties( "Unstatic Example" ).text
+
 val SeedsOutDir           = os.pwd / "seeds-out"
 
 val UntemplateSeedDirName = "untemplate-seed.g8"
@@ -32,6 +38,12 @@ val SeedUnstaticSrcDir    = SeedsStaticSrcDir / "unstatic"
 val SeedUntemplateBuildScFile = UntemplateSeedOutDir / "src" / "main" / "g8" / "build.sc"
 val SeedUnstaticBuildScFile   = UnstaticSeedOutDir / "src" / "main" / "g8" / "build.sc"
 
+val SeedUntemplateReadmeMdFile = UntemplateSeedOutDir / "README.md"
+val SeedUnstaticReadmeMdFile   = UnstaticSeedOutDir / "README.md"
+
+val SeedUntemplateDefaultPropertiesFile = UntemplateSeedOutDir / "src" / "main" / "g8" / "default.properties"
+val SeedUnstaticDefaultPropertiesFile   = UnstaticSeedOutDir / "src" / "main" / "g8" / "default.properties"
+
 val UntemplateMergeDir = os.pwd / os.up / UntemplateSeedDirName
 val UnstaticMergeDir   = os.pwd / os.up / UnstaticSeedDirName
 
@@ -43,11 +55,15 @@ def rebuildSeeds( merge : Boolean = false ) =
   os.copy( from = SeedCommonSrcDir, to = UntemplateSeedOutDir, copyAttributes = true, mergeFolders = true )
   os.copy( from = SeedUntemplateSrcDir, to = UntemplateSeedOutDir, copyAttributes = true, mergeFolders = true )
   os.write( target = SeedUntemplateBuildScFile, data = UntemplateBuildScText )
+  os.write( target = SeedUntemplateReadmeMdFile, data = UntemplateReadmeMdText )
+  os.write( target = SeedUntemplateDefaultPropertiesFile, data = UntemplateDefaultPropertiesText )
 
   os.makeDir.all( UntemplateSeedOutDir )
   os.copy( from = SeedCommonSrcDir, to = UnstaticSeedOutDir, copyAttributes = true, mergeFolders = true )
   os.copy( from = SeedUnstaticSrcDir, to = UnstaticSeedOutDir, copyAttributes = true, mergeFolders = true )
   os.write( target = SeedUnstaticBuildScFile, data = UnstaticBuildScText )
+  os.write( target = SeedUnstaticReadmeMdFile, data = UnstaticReadmeMdText )
+  os.write( target = SeedUnstaticDefaultPropertiesFile, data = UnstaticDefaultPropertiesText )
 
   if merge then
     os.makeDir.all( UntemplateMergeDir )

@@ -1,4 +1,5 @@
-name=untemplateplay
+(defaultName : String)[]~()>
+name=<(defaultName)>
 module=$name;format="camel"$
 package=example
 untemplate_version=0.0.4
