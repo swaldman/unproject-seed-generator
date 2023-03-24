@@ -1,6 +1,6 @@
-(defaultName : String)[]~()>
-name=<(defaultName)>
-module=$name;format="camel"$
+(input : DefaultPropertiesInput)[]~()>
+name=<( input.defaultName )>
+module=<( input.defaultModule )>
 package=example
 untemplate_version=0.0.4
 mill_version=0.10.11

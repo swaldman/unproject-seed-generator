@@ -3,6 +3,7 @@ package com.mchange.unproject.seed
 import scala.collection.*
 
 case class BuildScInput( extraPrologue : String, dependencies : immutable.SortedMap[String,String] )
+case class DefaultPropertiesInput( defaultName : String, defaultModule : String )
 
 val UntemplateBuildScInput = BuildScInput("", immutable.SortedMap.empty)
 val UntemplateBuildScText  = build_sc( UntemplateBuildScInput ).text
@@ -18,8 +19,12 @@ val UnstaticBuildScText  = build_sc( UnstaticBuildScInput ).text
 val UntemplateReadmeMdText = README_md( "untemplate" ).text
 val UnstaticReadmeMdText   = README_md( "unstatic" ).text
 
-val UntemplateDefaultPropertiesText = default_properties( "untemplateplay" ).text
-val UnstaticDefaultPropertiesText = default_properties( "Unstatic Example" ).text
+
+val UntemplateDefaultPropertiesInput = DefaultPropertiesInput( "untemplateplay", """$name;format="camel"$""")
+val UntemplateDefaultPropertiesText = default_properties( UntemplateDefaultPropertiesInput ).text
+
+val UnstaticDefaultPropertiesInput = DefaultPropertiesInput( "Unstatic Example", """$name$""")
+val UnstaticDefaultPropertiesText = default_properties( UnstaticDefaultPropertiesInput ).text
 
 val SeedsOutDir           = os.pwd / "seeds-out"
 
