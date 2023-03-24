@@ -33,5 +33,5 @@ object $module;format="Camel"$Site extends ZTSite.SingleRootComposite( JPath.of(
   // avoid conflicts, but early items in the lists take precedence over later items
   override val endpointBindingSources : immutable.Seq[ZTEndpointBinding.Source] = immutable.Seq( HelloWorldPage )
 
-object $module;format="Camel"$SiteGenerator extends ZTMain($module;format="Camel"$Site, "$module;format="snake"$-site")
+object $module;format="Camel"$SiteGenerator extends ZTMain($module;format="Camel"$Site, "$module;format="norm"$-site")
 
