@@ -9,8 +9,8 @@ val UntemplateBuildScText  = build_sc( UntemplateBuildScInput ).text
 
 val UnstaticBuildScExtraPrologue = """val UnstaticVersion = "0.0.4""""
 val UnstaticBuidScDependencies   = immutable.SortedMap (
-  "Unstatic"       -> """ivy"com.mchange::unstatic:${UnstaticVersion}"""",
-  "UnstaticZTapir" -> """ivy"com.mchange::unstatic-ztapir:${UnstaticVersion}"""",
+  "Unstatic"       -> """ivy"com.mchange::unstatic:\${UnstaticVersion}"""",        // we need dollar signs escaped in g8 template files
+  "UnstaticZTapir" -> """ivy"com.mchange::unstatic-ztapir:\${UnstaticVersion}"""", // we need dollar signs escaped in g8 template files
 )
 val UnstaticBuildScInput = BuildScInput( UnstaticBuildScExtraPrologue, UnstaticBuidScDependencies )
 val UnstaticBuildScText  = build_sc( UnstaticBuildScInput ).text

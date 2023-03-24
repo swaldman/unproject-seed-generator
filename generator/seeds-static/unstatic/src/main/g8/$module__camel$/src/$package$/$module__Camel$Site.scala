@@ -23,14 +23,15 @@ object $module;format="Camel"$Site extends ZTSite.SingleRootComposite( JPath.of(
 
   // get rid of this -- modify it into something useful and/or include something like a SimpleBlog defined as a singleton object
   object HelloWorldPage extends ZTEndpointBinding.Source:
-    val location = site.location("/index.html")
+    val location = $module;format="Camel"$Site.location("/index.html")
     val task = zio.ZIO.attempt {
-      layout_main_html( MainLayoutInput( location, Some("Hello"),  "<h1>Hello World!</h1>" ) )
+      layout_main_html( MainLayoutInput( location, Some("Hello"),  "<h1>Hello World!</h1>" ) ).text
     }
     val endpointBindings = ZTEndpointBinding.publicReadOnlyHtml( location, task, None, immutable.Set("hello-world") ) :: Nil
   end HelloWorldPage
 
   // avoid conflicts, but early items in the lists take precedence over later items
   override val endpointBindingSources : immutable.Seq[ZTEndpointBinding.Source] = immutable.Seq( HelloWorldPage )
-  
+
+object $module;format="Camel"$SiteGenerator extends ZTMain($module;format="Camel"$Site, "$module;format="snake"$-site")
 
