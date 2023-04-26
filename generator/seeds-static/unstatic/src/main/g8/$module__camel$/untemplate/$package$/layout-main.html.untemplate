@@ -7,9 +7,6 @@ val cssLoc = site.location("css/style.css")
 
 val title = input.mbTitle.getOrElse("$module$")
 
-// not currently used, but it's a good thing to have
-// around to relativize links
-
 given PageBase = PageBase.fromPage(input.renderLocation)
 
 (input : $module;format="Camel"$Site.MainLayoutInput)[]~()>
