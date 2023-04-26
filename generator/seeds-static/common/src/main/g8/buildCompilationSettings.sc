@@ -1,4 +1,4 @@
-// huge thanks to @lolgab onn the Scala discord!
+// huge thanks to @lolgab on the Scala discord!
 
 interp.configureCompiler { c =>
   val settings = c.settings
