@@ -8,7 +8,7 @@ case class DefaultPropertiesInput( defaultName : String, defaultModule : String 
 val UntemplateBuildScInput = BuildScInput("", immutable.SortedMap.empty)
 val UntemplateBuildScText  = build_sc( UntemplateBuildScInput ).text
 
-val UnstaticBuildScExtraPrologue = """val UnstaticVersion = "0.0.4""""
+val UnstaticBuildScExtraPrologue = """val UnstaticVersion = "0.0.6""""
 val UnstaticBuidScDependencies   = immutable.SortedMap (
   "Unstatic"       -> """ivy"com.mchange::unstatic:\${UnstaticVersion}"""",        // we need dollar signs escaped in g8 template files
   "UnstaticZTapir" -> """ivy"com.mchange::unstatic-ztapir:\${UnstaticVersion}"""", // we need dollar signs escaped in g8 template files
