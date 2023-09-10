@@ -2,7 +2,7 @@
 name=<( input.defaultName )>
 module=<( input.defaultModule )>
 package=example
-untemplate_version=0.0.5
-mill_version=0.10.11
+untemplate_version=0.1.0-SNAPSHOT
+mill_version=0.11.2
 verbatim=mill .gitignore
 

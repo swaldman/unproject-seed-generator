@@ -5,10 +5,9 @@ import mill.define.Source
 import mill.modules.Jvm
 import mill.api.Result
 
-// huge thanks to @lolgab onn the Scala discord!
-import $file.buildCompilationSettings
+import $meta._
 
-import $ivy.`com.mchange::untemplate-mill:0.0.4`
+import $ivy.`com.mchange::untemplate-mill:0.1.0`
 import untemplate.mill._
 
 object Dependency {
@@ -17,10 +16,10 @@ object Dependency {
 }
 
 object generator extends UntemplateModule {
-  override def scalaVersion = "3.2.1"
+  override def scalaVersion = "3.2.2"
 
   // supports Scala 3.2.1
-  override def ammoniteVersion = "2.5.6"
+  //override def ammoniteVersion = "2.5.6"
 
   // we'll build an index!
   override def untemplateIndexNameFullyQualified : Option[String] = Some("com.mchange.unproject.seed.IndexedUntemplates")
