@@ -1,7 +1,7 @@
 import com.mchange.codegenutil.*
 
 (input : BuildScInput)[]~()>
-import $meta._
+import \$meta._
 
 import mill._
 import mill.scalalib._
