@@ -26,7 +26,7 @@ import untemplate.mill._
   end if
 ()>
 object $module;format="camel"$ extends UntemplateModule {
-  override def scalaVersion = "3.2.2"
+  override def scalaVersion = "$scala_version$"
 
   // we'll build an index!
   override def untemplateIndexNameFullyQualified : Option[String] = Some("$package;format="package"$.IndexedUntemplates")

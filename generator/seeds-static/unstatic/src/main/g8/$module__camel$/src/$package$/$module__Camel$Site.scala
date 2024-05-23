@@ -1,6 +1,6 @@
 package $package$
 
-import scala.collection.*
+import scala.collection.immutable.*
 
 import unstatic.*
 import unstatic.ztapir.*
@@ -12,7 +12,7 @@ import java.nio.file.Path as JPath
 
 import untemplate.Untemplate.AnyUntemplate
 
-object $module;format="Camel"$Site extends ZTSite.SingleRootComposite( JPath.of("$module;format="camel"$/static") ):
+object $module;format="Camel"$Site extends ZTSite.SingleStaticRootComposite( JPath.of("$module;format="camel"$/static") ):
 
   // edit this to where your site will actually be served!
   override val serverUrl : Abs    = Abs("https://www.example.com/")

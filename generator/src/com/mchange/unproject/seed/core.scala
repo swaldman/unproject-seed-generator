@@ -3,12 +3,12 @@ package com.mchange.unproject.seed
 import scala.collection.*
 
 case class BuildScInput( extraPrologue : String, dependencies : immutable.SortedMap[String,String] )
-case class DefaultPropertiesInput( defaultName : String, defaultModule : String )
+case class DefaultPropertiesInput( defaultName : String, defaultModule : String, isUnstatic : Boolean )
 
 val UntemplateBuildScInput = BuildScInput("", immutable.SortedMap.empty)
 val UntemplateBuildScText  = build_sc( UntemplateBuildScInput ).text
 
-val UnstaticBuildScExtraPrologue = """val UnstaticVersion = "$untemplate_version$""""
+val UnstaticBuildScExtraPrologue = """val UnstaticVersion = "$unstatic_version$""""
 val UnstaticBuidScDependencies   = immutable.SortedMap (
   "Unstatic"       -> """ivy"com.mchange::unstatic:\${UnstaticVersion}"""",        // we need dollar signs escaped in g8 template files
   "UnstaticZTapir" -> """ivy"com.mchange::unstatic-ztapir:\${UnstaticVersion}"""", // we need dollar signs escaped in g8 template files
@@ -20,10 +20,10 @@ val UntemplateReadmeMdText = README_md( "untemplate" ).text
 val UnstaticReadmeMdText   = README_md( "unstatic" ).text
 
 
-val UntemplateDefaultPropertiesInput = DefaultPropertiesInput( "untemplateplay", """$name;format="camel"$""")
+val UntemplateDefaultPropertiesInput = DefaultPropertiesInput( "untemplateplay", """$name;format="camel"$""", false)
 val UntemplateDefaultPropertiesText = default_properties( UntemplateDefaultPropertiesInput ).text
 
-val UnstaticDefaultPropertiesInput = DefaultPropertiesInput( "Unstatic Example", """$name$""")
+val UnstaticDefaultPropertiesInput = DefaultPropertiesInput( "Unstatic Example", """$name$""", true)
 val UnstaticDefaultPropertiesText = default_properties( UnstaticDefaultPropertiesInput ).text
 
 val SeedsOutDir           = os.pwd / "seeds-out"
